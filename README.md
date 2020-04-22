@@ -5,6 +5,7 @@ Select An Item then Auto Select In Multple Select
 1:- First Step
     We Need to create an Select Option field
     Here we go...
+    
     ```
     <div class="col-md-3 col-sm-3 ">
         <select id="customerName" onchange="option(this.id, [['companyName', 'data-company-name'],['carName', 'data-car-name'],]);">
