@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <div class="col-md-3 col-sm-3 ">
+        <select id="customerName" onchange="option(this.id, [
+    ['companyName', 'data-company-name'],['carName', 'data-car-name'],]);">
+            <option value="" selected disabled>Choose..</option>
+            <option data-company-name="1" data-car-name="1,2" value="1"> Hassan </option>
+            <option data-company-name="2" data-car-name="3" value="2"> Nouman </option>
+            <option data-company-name="3" data-car-name="4" value="3"> Khurram </option>
+            <option data-company-name="1" data-car-name="1,2" value="4"> Kashif </option>
+        </select>
+    </div>
+    <div class="col-md-3 col-sm-3 ">
+        <select id="companyName" multiple>
+            <option value="" selected disabled>Choose..</option>
+            <option value="1"> Toyota </option>
+            <option value="2"> Honda </option>
+            <option value="3"> Suzuki </option>
+        </select>
+    </div>
+    <div class="col-md-3 col-sm-3 ">
+        <select id="carName" multiple>
+            <option value="" selected disabled>Choose..</option>
+            <option value="1"> Volvo </option>
+            <option value="2"> Saab </option>
+            <option value="3"> Opel </option>
+            <option value="4"> Audi </option>
+        </select>
+    </div>
+
+
+
+
+<script>
+        var domain_url_str = '',
+            domain_url_res = [];
+
+
+        function option(id, showSlctdOptns) {
+            makeAryAny(id, showSlctdOptns);
+        }
+
+        function makeAryAny(id, showSlctdOptns) {
+            for (var i = 0; i < showSlctdOptns.length; i++) {
+                domain_url_str = $("#" + id).find(':selected').attr(showSlctdOptns[i][1]);
+                domain_url_res = domain_url_str.split(",");
+                rmveSlctdVal(showSlctdOptns[i][0]);
+                // $("#" + showSlctdOptns[i][0]).select2("destroy");
+                setSelect(showSlctdOptns[i][0]);
+                domain_url_res.splice(0, domain_url_res.length);
+            }
+        }
+
+        function rmveSlctdVal(showSlctdOptns) {
+            $("#"+ showSlctdOptns+ " option:selected").prop('selected',false);
+            // $("#"+ showSlctdOptns+ " option:selected").each(function () {
+            //     $(this).removeAttr('selected');
+            // });
+        }
+
+        function setSelect(showSlctdOptns) {
+            for (var i = 0; i < domain_url_res.length; i++) {
+                if (!$('#' + showSlctdOptns + ' option[value="' + domain_url_res[i] + '"]').prop("selected", true).length) {
+                    alert('No such option');
+                }
+                // $("#" + showSlctdOptns).select2();
+            }
+        }
+    </script>
+
+    </body>
+    </html>
